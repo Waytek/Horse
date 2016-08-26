@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: d51a18eba2e85ee40a6ad4b536aed6f9
+timeCreated: 1472037321
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - Horse_Game_Object: {fileID: 186130, guid: 3a8cf33b39f21db449055ad9f2dc5782, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
