@@ -5,7 +5,6 @@ using System;
 
 public class TimeManager : MonoBehaviour {
     Text timer;
-    float time = 0;
 
     private DateTime timeBegin;
     private TimeSpan timeTimer;

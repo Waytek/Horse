@@ -18,10 +18,13 @@ public class PlayerMovement : MonoBehaviour {
     void FixedUpdate()
     {
         float inputWalk = CrossPlatformInputManager.GetAxisRaw("Vertical");
+        if (inputWalk > 0) { inputWalk = 1; }
+        if (inputWalk < 0) { inputWalk = -1; }
         float inputTurn = CrossPlatformInputManager.GetAxisRaw("Horizontal");
         float inputRun = CrossPlatformInputManager.GetAxisRaw("Run");
         Player_Horse.Move(inputWalk * Player_Horse.walkSpeed, inputRun * Player_Horse.runSpeed);
         Player_Horse.Turn(inputTurn * Player_Horse.turnSpeed, inputWalk);
         Player_Horse.Animating(inputWalk, inputTurn, inputRun);
     }
+
 }
