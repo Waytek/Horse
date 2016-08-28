@@ -6,15 +6,14 @@ public class AImovement : MonoBehaviour {
     NavMeshAgent navAgent;
     Horse UI_Horse;
     GameObject Player;
-
-    public GameObject[] destinations;
+    GameObject[] destinations;
 
     private static float imprecisionSpeed = 0.1f; //погрешность скорости
     private static int timeForStart = 0;
 
     public int timeForSwithMode = 10;
 
-    public int destroyDistance = 100;
+    public float destroyDistance = 100f;
 
 	// Use this for initialization
 	void Start () {
@@ -30,7 +29,6 @@ public class AImovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
-
     }
     void FixedUpdate()
     {
@@ -96,7 +94,7 @@ public class AImovement : MonoBehaviour {
                 break;
         }
     }
-    void DestroyOnDistance(int destroyDistance)
+    void DestroyOnDistance(float destroyDistance)
     {
         if (Vector3.Distance(this.transform.position,Player.transform.position)>destroyDistance){
             Destroy(gameObject);

@@ -10,6 +10,8 @@ public class Horse : MonoBehaviour {
     public float runSpeed = 6;
     public float turnSpeed = 60;
 
+    public bool isRuning = false;
+    public bool isWalking = false;
     public bool canRun = true;
     
 	// Use this for initialization
@@ -18,11 +20,6 @@ public class Horse : MonoBehaviour {
         Horse_Animator = GetComponent<Animator>();
         Horse_Rigidbody = GetComponent<Rigidbody>();
 	}
-    public GameObject Instant(GameObject obj)
-    {
-        Instantiate(obj);
-        return obj;
-    }
 	// Update is called once per frame
 	void Update () {
 
@@ -33,23 +30,23 @@ public class Horse : MonoBehaviour {
     }
     public void Animating(float walk, float turn, float run)
     {
-        bool walking = walk != 0 && run == 0;
+        bool walking = walk != 0 && run == 0 || walk!=0 && !canRun;
         bool walking_back = walk < 0;
         bool turnOnStay = turn != 0 && run == 0 || turn!=0 && walk==0;        
         
         bool anim_walking = walking || walking_back || turnOnStay;        
         Horse_Animator.SetBool("walk", anim_walking);
 
-        bool anim_runing = walk>0 && run!=0;
+        bool anim_runing = walk>0 && run!=0 && canRun;
         Horse_Animator.SetBool("run", anim_runing);
     }
     public void Move(float walk, float run)
     {
-        if (walk != 0)
-        {
+        //if (walk != 0)
+        //{
             Horse_Rigidbody.position += Horse_Rigidbody.transform.forward * Speed(walk, run) * Time.deltaTime;
-            //Horse_Game_Object.transform.position += Horse_Game_Object.transform.forward * Speed(walk,run) * Time.deltaTime;
-        }
+
+        //}
     }
     public void Turn(float turn, float move)
     {
@@ -67,12 +64,22 @@ public class Horse : MonoBehaviour {
     {
         if (walk > 0 && run > 0 && canRun)
         {
+            isRuning = true;
+            isWalking = false;
             return run;
             
         }
+        else if (walk !=0)
+        {
+            isRuning = false;
+            isWalking = true;
+            return walk;
+        }
         else
         {
-            return walk;
+            isRuning = false;
+            isWalking = false;
+            return 0;
         }
     }
 }
